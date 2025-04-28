@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
@@ -11,7 +10,7 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Select } from "@/components/ui/select";
+import { Card, CardContent } from "@/components/ui/card";
 import { FileText, Plus } from "lucide-react";
 
 interface RegistryRecord {
@@ -47,6 +46,13 @@ export default function RegistryList() {
   const [searchQuery, setSearchQuery] = useState("");
   const [itemsPerPage, setItemsPerPage] = useState("10");
 
+  const metrics = [
+    { label: "提報備查", count: 3 },
+    { label: "報辦", count: 4 },
+    { label: "檢退補件", count: 2, highlight: true },
+    { label: "同意備查", count: 22 }
+  ];
+
   return (
     <div className="p-6 space-y-6">
       <div className="flex items-center justify-between">
@@ -57,6 +63,21 @@ export default function RegistryList() {
             建立備查
           </Link>
         </Button>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {metrics.map((metric, index) => (
+          <Card key={index}>
+            <CardContent className="pt-6">
+              <div className="flex flex-col">
+                <p className="text-sm font-medium text-muted-foreground">{metric.label}</p>
+                <p className={`text-2xl font-bold ${metric.highlight ? 'text-red-500' : ''}`}>
+                  {metric.count} 件
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
       </div>
 
       <div className="flex items-center justify-between gap-4">
