@@ -143,7 +143,7 @@ export const mockProjects: Project[] = [
   {
     id: "1",
     name: "故宮文物數位典藏計畫",
-    description: "針對故宮博物院藏品進行數位化保存與研究...",
+    description: "針對故���博物院藏品進行數位化保存與研究...",
     startDate: "2024-01-01T00:00:00Z",
     endDate: "2024-12-31T00:00:00Z",
     status: "active",

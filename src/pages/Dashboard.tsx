@@ -47,6 +47,7 @@ export default function Dashboard() {
         fill="white"
         textAnchor={x > cx ? 'start' : 'end'}
         dominantBaseline="central"
+        className="text-xs"
       >
         {`${name} (${(percent * 100).toFixed(1)}%)`}
       </text>
@@ -128,7 +129,10 @@ export default function Dashboard() {
             <CardHeader>
               <CardTitle>依文物類別統計</CardTitle>
               <CardDescription>
-                展示系統中各類別文物的件數及案件數統計
+                藝術作品: 227 案 248 件<br/>
+                生活及儀禮器物: 2516 案 4166 件<br/>
+                圖書文獻及影音資料: 3475 案 117548 件<br/>
+                其他(功能未明者): 61 案 61 件
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -201,7 +205,10 @@ export default function Dashboard() {
             <CardHeader>
               <CardTitle>依文物分級統計</CardTitle>
               <CardDescription>
-                展示系統中依文物暫行分級的件數及案件數統計
+                國寶: 759 案 52963 件<br/>
+                重要古物: 3899 案 43875 件<br/>
+                一般古物: 70076 案 113378 件<br/>
+                暫無古物文化資產價值: 1999 案 115436 件
               </CardDescription>
             </CardHeader>
             <CardContent>
