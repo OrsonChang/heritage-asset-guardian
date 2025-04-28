@@ -61,7 +61,7 @@ export function AppSidebar() {
       <SidebarHeader className="flex items-center justify-between p-4">
         <div className="flex items-center gap-2">
           <LandPlot className="h-6 w-6 text-sidebar-primary" />
-          <h2 className="text-lg font-bold text-sidebar-primary">文化資產守護系統</h2>
+          <h2 className="text-lg font-bold text-sidebar-primary">文物暫行分級管理平台</h2>
         </div>
         <SidebarTrigger onClick={() => setOpen(!open)} />
       </SidebarHeader>
@@ -116,3 +116,4 @@ export function AppSidebar() {
     </Sidebar>
   );
 }
+
