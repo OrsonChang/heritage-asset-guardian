@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -12,8 +11,8 @@ import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 import AuthenticatedLayout from "./components/AuthenticatedLayout";
 import Dashboard from "./pages/Dashboard";
+import CustodialOrgList from "./components/CustodialOrgList";
 
-// We'll redirect the base route to Dashboard once authenticated
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -32,10 +31,9 @@ const App = () => (
             {/* Protected routes */}
             <Route element={<AuthenticatedLayout />}>
               <Route path="/dashboard" element={<Dashboard />} />
-              {/* Additional routes will be added here */}
               <Route path="/registry" element={<div className="p-6"><h1 className="text-2xl font-bold">備查管理 (Coming Soon)</h1></div>} />
               <Route path="/projects" element={<div className="p-6"><h1 className="text-2xl font-bold">專案管理 (Coming Soon)</h1></div>} />
-              <Route path="/custodial-orgs" element={<div className="p-6"><h1 className="text-2xl font-bold">保管單位管理 (Coming Soon)</h1></div>} />
+              <Route path="/custodial-orgs" element={<CustodialOrgList />} />
               <Route path="/heritage-assets" element={<div className="p-6"><h1 className="text-2xl font-bold">文物管理 (Coming Soon)</h1></div>} />
               <Route path="/users" element={<div className="p-6"><h1 className="text-2xl font-bold">使用者管理 (Coming Soon)</h1></div>} />
               <Route path="/user-applications" element={<div className="p-6"><h1 className="text-2xl font-bold">帳號申請管理 (Coming Soon)</h1></div>} />
