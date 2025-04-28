@@ -11,7 +11,7 @@ import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 import AuthenticatedLayout from "./components/AuthenticatedLayout";
 import Dashboard from "./pages/Dashboard";
-import CustodialOrgList from "./components/CustodialOrgList";
+import CustodialOrgList from "./pages/CustodialOrgList";
 
 const queryClient = new QueryClient();
 
