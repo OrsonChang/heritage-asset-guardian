@@ -30,13 +30,19 @@ import {
   classificationStats 
 } from '@/data/mockData';
 
-const COLORS = ['#4d8169', '#699b83', '#96b9a7', '#bfd5c9', '#dfeae3', '#f2f7f4'];
+const COLORS = ['#4d8169', '#699b83', '#96b9a7', '#bfd5c9'];
+const CLASSIFICATION_COLORS = ['#8B5CF6', '#D946EF', '#F97316', '#0EA5E9'];
 
 export default function Dashboard() {
   const totalAssets = mockAssets.length;
   const totalRegistry = mockRegistry.length;
   const totalProjects = mockProjects.length;
   const totalOrgs = mockCustodialOrgs.length;
+
+  const customTooltipFormatter = (value: number, name: string, item: any) => {
+    if (name === "案件數") return [`${value.toLocaleString()} 案`, name];
+    return [`${value.toLocaleString()} 件`, name];
+  };
 
   return (
     <div className="p-6 space-y-6">
@@ -113,28 +119,32 @@ export default function Dashboard() {
             <CardHeader>
               <CardTitle>依文物類別統計</CardTitle>
               <CardDescription>
-                展示系統中各類別文物的比例
+                展示系統中各類別文物的件數及案件數統計
               </CardDescription>
             </CardHeader>
             <CardContent className="pl-0">
-              <ResponsiveContainer width="100%" height={300}>
+              <ResponsiveContainer width="100%" height={400}>
                 <BarChart
                   data={categoryStats}
                   margin={{
-                    top: 5,
+                    top: 20,
                     right: 30,
                     left: 20,
-                    bottom: 5,
+                    bottom: 60
                   }}
                 >
                   <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="category" />
-                  <YAxis />
-                  <Tooltip
-                    formatter={(value) => [`${value} 件`, '文物數量']}
-                    labelFormatter={(label) => `類別: ${label}`}
+                  <XAxis 
+                    dataKey="category" 
+                    angle={-45}
+                    textAnchor="end"
+                    height={80}
                   />
-                  <Bar dataKey="value" fill="#4d8169" name="文物數量" />
+                  <YAxis />
+                  <Tooltip formatter={customTooltipFormatter} />
+                  <Legend />
+                  <Bar dataKey="value" name="文物件數" fill="#4d8169" />
+                  <Bar dataKey="cases" name="案件數" fill="#8B5CF6" />
                 </BarChart>
               </ResponsiveContainer>
             </CardContent>
@@ -146,34 +156,68 @@ export default function Dashboard() {
             <CardHeader>
               <CardTitle>依文物分級統計</CardTitle>
               <CardDescription>
-                展示系統中依文物暫行分級的比例
+                展示系統中依文物暫行分級的件數及案件數統計
               </CardDescription>
             </CardHeader>
-            <CardContent className="pl-2">
-              <ResponsiveContainer width="100%" height={300}>
-                <PieChart>
-                  <Pie
-                    data={classificationStats}
-                    cx="50%"
-                    cy="50%"
-                    labelLine={true}
-                    outerRadius={100}
-                    fill="#8884d8"
-                    dataKey="value"
-                    nameKey="classification"
-                    label={({ classification, percent }) => `${classification}: ${(percent * 100).toFixed(0)}%`}
-                  >
-                    {classificationStats.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                    ))}
-                  </Pie>
-                  <Tooltip
-                    formatter={(value) => [`${value} 件`, '文物數量']}
-                    labelFormatter={(label) => `分級: ${label}`}
-                  />
-                  <Legend />
-                </PieChart>
-              </ResponsiveContainer>
+            <CardContent>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <ResponsiveContainer width="100%" height={300}>
+                    <PieChart>
+                      <Pie
+                        data={classificationStats}
+                        cx="50%"
+                        cy="50%"
+                        labelLine={false}
+                        outerRadius={100}
+                        fill="#8884d8"
+                        dataKey="value"
+                        nameKey="classification"
+                        label={({ classification, percent }) => 
+                          `${classification}: ${(percent * 100).toFixed(1)}%`
+                        }
+                      >
+                        {classificationStats.map((entry, index) => (
+                          <Cell 
+                            key={`cell-${index}`} 
+                            fill={CLASSIFICATION_COLORS[index % CLASSIFICATION_COLORS.length]} 
+                          />
+                        ))}
+                      </Pie>
+                      <Tooltip formatter={(value) => `${Number(value).toLocaleString()} 件`} />
+                      <Legend />
+                    </PieChart>
+                  </ResponsiveContainer>
+                </div>
+                <div>
+                  <ResponsiveContainer width="100%" height={300}>
+                    <PieChart>
+                      <Pie
+                        data={classificationStats}
+                        cx="50%"
+                        cy="50%"
+                        labelLine={false}
+                        outerRadius={100}
+                        fill="#8884d8"
+                        dataKey="cases"
+                        nameKey="classification"
+                        label={({ classification, percent }) => 
+                          `${classification}: ${(percent * 100).toFixed(1)}%`
+                        }
+                      >
+                        {classificationStats.map((entry, index) => (
+                          <Cell 
+                            key={`cell-${index}`} 
+                            fill={COLORS[index % COLORS.length]} 
+                          />
+                        ))}
+                      </Pie>
+                      <Tooltip formatter={(value) => `${Number(value).toLocaleString()} 案`} />
+                      <Legend />
+                    </PieChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
             </CardContent>
           </Card>
         </TabsContent>
