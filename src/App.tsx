@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -14,6 +13,7 @@ import Dashboard from "./pages/Dashboard";
 import CustodialOrgList from "./pages/CustodialOrgList";
 import Projects from "./pages/Projects";
 import ProjectForm from "./pages/ProjectForm";
+import RegistryForm from "./pages/RegistryForm";
 
 const queryClient = new QueryClient();
 
@@ -33,7 +33,8 @@ const App = () => (
             {/* Protected routes */}
             <Route element={<AuthenticatedLayout />}>
               <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/registry" element={<div className="p-6"><h1 className="text-2xl font-bold">備查管理 (Coming Soon)</h1></div>} />
+              <Route path="/registry" element={<div className="p-6"><h1 className="text-2xl font-bold">備查管理</h1></div>} />
+              <Route path="/registry/new" element={<RegistryForm />} />
               <Route path="/projects" element={<Projects />} />
               <Route path="/projects/new" element={<ProjectForm />} />
               <Route path="/custodial-orgs" element={<CustodialOrgList />} />
