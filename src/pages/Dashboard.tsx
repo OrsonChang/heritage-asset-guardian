@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -52,6 +53,38 @@ export default function Dashboard() {
         {`${name} (${(percent * 100).toFixed(1)}%)`}
       </text>
     );
+  };
+
+  // Type-safe formatter function for categories (value/items)
+  const formatCategoryLegend = (value: string, entry: any) => {
+    // Safe access with optional chaining and type assertion
+    const count = entry.payload?.value ? entry.payload.value.toLocaleString() : '0';
+    return `${value} (${count} 件)`;
+  };
+
+  // Type-safe formatter function for categories (cases)
+  const formatCategoryCasesLegend = (value: string, entry: any) => {
+    // Safe access with optional chaining and type assertion
+    const count = entry.payload && 'cases' in entry.payload 
+      ? (entry.payload.cases as number).toLocaleString() 
+      : '0';
+    return `${value} (${count} 案)`;
+  };
+
+  // Type-safe formatter function for classifications (value/items)
+  const formatClassificationLegend = (value: string, entry: any) => {
+    // Safe access with optional chaining and type assertion
+    const count = entry.payload?.value ? entry.payload.value.toLocaleString() : '0';
+    return `${value} (${count} 件)`;
+  };
+
+  // Type-safe formatter function for classifications (cases)
+  const formatClassificationCasesLegend = (value: string, entry: any) => {
+    // Safe access with optional chaining and type assertion
+    const count = entry.payload && 'cases' in entry.payload 
+      ? (entry.payload.cases as number).toLocaleString() 
+      : '0';
+    return `${value} (${count} 案)`;
   };
 
   return (
@@ -164,7 +197,7 @@ export default function Dashboard() {
                         formatter={(value: number) => `${value.toLocaleString()} 件`}
                       />
                       <Legend 
-                        formatter={(value, entry) => `${value} (${entry.payload.value.toLocaleString()} 件)`}
+                        formatter={formatCategoryLegend}
                       />
                     </PieChart>
                   </ResponsiveContainer>
@@ -196,7 +229,7 @@ export default function Dashboard() {
                         formatter={(value: number) => `${value.toLocaleString()} 案`}
                       />
                       <Legend 
-                        formatter={(value, entry) => `${value} (${entry.payload.cases.toLocaleString()} 案)`}
+                        formatter={formatCategoryCasesLegend}
                       />
                     </PieChart>
                   </ResponsiveContainer>
@@ -246,7 +279,7 @@ export default function Dashboard() {
                         formatter={(value: number) => `${value.toLocaleString()} 件`}
                       />
                       <Legend 
-                        formatter={(value, entry) => `${value} (${entry.payload.value.toLocaleString()} 件)`}
+                        formatter={formatClassificationLegend}
                       />
                     </PieChart>
                   </ResponsiveContainer>
@@ -278,7 +311,7 @@ export default function Dashboard() {
                         formatter={(value: number) => `${value.toLocaleString()} 案`}
                       />
                       <Legend 
-                        formatter={(value, entry) => `${value} (${entry.payload.cases.toLocaleString()} 案)`}
+                        formatter={formatClassificationCasesLegend}
                       />
                     </PieChart>
                   </ResponsiveContainer>
