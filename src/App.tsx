@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -5,13 +6,14 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
 
-import Index from "./pages/Index";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 import AuthenticatedLayout from "./components/AuthenticatedLayout";
 import Dashboard from "./pages/Dashboard";
 import CustodialOrgList from "./pages/CustodialOrgList";
+import Projects from "./pages/Projects";
+import ProjectForm from "./pages/ProjectForm";
 
 const queryClient = new QueryClient();
 
@@ -32,7 +34,8 @@ const App = () => (
             <Route element={<AuthenticatedLayout />}>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/registry" element={<div className="p-6"><h1 className="text-2xl font-bold">備查管理 (Coming Soon)</h1></div>} />
-              <Route path="/projects" element={<div className="p-6"><h1 className="text-2xl font-bold">專案管理 (Coming Soon)</h1></div>} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/projects/new" element={<ProjectForm />} />
               <Route path="/custodial-orgs" element={<CustodialOrgList />} />
               <Route path="/heritage-assets" element={<div className="p-6"><h1 className="text-2xl font-bold">文物管理 (Coming Soon)</h1></div>} />
               <Route path="/users" element={<div className="p-6"><h1 className="text-2xl font-bold">使用者管理 (Coming Soon)</h1></div>} />
