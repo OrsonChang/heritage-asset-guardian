@@ -151,6 +151,7 @@ export default function Dashboard() {
                         dataKey="value"
                         labelLine={false}
                         label={renderCustomizedLabel}
+                        nameKey="category"
                       >
                         {categoryStats.map((entry, index) => (
                           <Cell 
@@ -162,7 +163,9 @@ export default function Dashboard() {
                       <Tooltip
                         formatter={(value: number) => `${value.toLocaleString()} 件`}
                       />
-                      <Legend />
+                      <Legend 
+                        formatter={(value, entry) => `${value} (${entry.payload.value.toLocaleString()} 件)`}
+                      />
                     </PieChart>
                   </ResponsiveContainer>
                 </div>
@@ -180,6 +183,7 @@ export default function Dashboard() {
                         dataKey="cases"
                         labelLine={false}
                         label={renderCustomizedLabel}
+                        nameKey="category"
                       >
                         {categoryStats.map((entry, index) => (
                           <Cell 
@@ -191,7 +195,9 @@ export default function Dashboard() {
                       <Tooltip
                         formatter={(value: number) => `${value.toLocaleString()} 案`}
                       />
-                      <Legend />
+                      <Legend 
+                        formatter={(value, entry) => `${value} (${entry.payload.cases.toLocaleString()} 案)`}
+                      />
                     </PieChart>
                   </ResponsiveContainer>
                 </div>
@@ -227,6 +233,7 @@ export default function Dashboard() {
                         dataKey="value"
                         labelLine={false}
                         label={renderCustomizedLabel}
+                        nameKey="classification"
                       >
                         {classificationStats.map((entry, index) => (
                           <Cell 
@@ -238,7 +245,9 @@ export default function Dashboard() {
                       <Tooltip
                         formatter={(value: number) => `${value.toLocaleString()} 件`}
                       />
-                      <Legend />
+                      <Legend 
+                        formatter={(value, entry) => `${value} (${entry.payload.value.toLocaleString()} 件)`}
+                      />
                     </PieChart>
                   </ResponsiveContainer>
                 </div>
@@ -256,6 +265,7 @@ export default function Dashboard() {
                         dataKey="cases"
                         labelLine={false}
                         label={renderCustomizedLabel}
+                        nameKey="classification"
                       >
                         {classificationStats.map((entry, index) => (
                           <Cell 
@@ -267,7 +277,9 @@ export default function Dashboard() {
                       <Tooltip
                         formatter={(value: number) => `${value.toLocaleString()} 案`}
                       />
-                      <Legend />
+                      <Legend 
+                        formatter={(value, entry) => `${value} (${entry.payload.cases.toLocaleString()} 案)`}
+                      />
                     </PieChart>
                   </ResponsiveContainer>
                 </div>
