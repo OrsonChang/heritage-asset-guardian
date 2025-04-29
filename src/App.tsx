@@ -16,6 +16,8 @@ import Projects from "./pages/Projects";
 import ProjectForm from "./pages/ProjectForm";
 import RegistryList from "./pages/Registry/RegistryList";
 import RegistryForm from "./pages/RegistryForm";
+import HeritageAssetsPage from "./pages/HeritageAssetsPage";
+import HeritageAssetBatchImport from "./pages/HeritageAssetBatchImport";
 
 const queryClient = new QueryClient();
 
@@ -40,7 +42,8 @@ const App = () => (
               <Route path="/projects" element={<Projects />} />
               <Route path="/projects/new" element={<ProjectForm />} />
               <Route path="/custodial-orgs" element={<CustodialOrgList />} />
-              <Route path="/heritage-assets" element={<div className="p-6"><h1 className="text-2xl font-bold">文物管理 (Coming Soon)</h1></div>} />
+              <Route path="/heritage-assets" element={<HeritageAssetsPage />} />
+              <Route path="/heritage-assets/batch-import" element={<HeritageAssetBatchImport />} />
               <Route path="/users" element={<div className="p-6"><h1 className="text-2xl font-bold">使用者管理 (Coming Soon)</h1></div>} />
               <Route path="/user-applications" element={<div className="p-6"><h1 className="text-2xl font-bold">帳號申請管理 (Coming Soon)</h1></div>} />
               <Route path="/system" element={<div className="p-6"><h1 className="text-2xl font-bold">系統管理 (Coming Soon)</h1></div>} />
